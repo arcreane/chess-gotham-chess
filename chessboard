@@ -3,3 +3,23 @@ from position import Position
 class Board:
     def __init__(self):
         self.grid = [[None for _ in range(8)] for _ in range(8)]
+    
+    def place_piece(self, piece, position):
+        row = position.row
+        col = position.get_column_idx()
+        self.grid[row][col] = piece
+        piece.position = position
+
+    def get_piece_at(self, position):
+        row = position.row
+        col = position.get_column_idx()
+        return self.grid[row][col]
+
+    def move_piece(self, start_pos, end_pos):
+        piece = self.get_piece_at(start_pos)
+        if piece and piece.isValidMove(end_pos, self):
+            self.grid[end_pos.row][end_pos.get_column_idx()] = piece
+            self.grid[start_pos.row][start_pos.get_column_idx()] = None
+            piece.position = end_pos
+            return True
+        return False
