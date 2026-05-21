@@ -1,87 +1,64 @@
-class Piece:
-    """Classe de base pour une piece d'echecs."""
+from piece import Piece
+from position import Position
 
+class Rook(Piece):
+    """Classe qui represente une tour aux echecs"""
     def __init__(self, position, color):
-        self.position = position
-        self.color = color
-
-class Position:
-    """Classe qui represente une position."""
-
-    def __init__(self, column, row):
-        self.column = column
-        self.row = row
-
-    def __str__(self):
-        return str(self.column) + str(self.row)
-
-class Tour(Piece):
-    """Classe qui represente une tour."""
-
-    def __init__(self, position, color):
+        """Initialise une tour.
+        position: objet Position
+        color: 0 pour blanc, 1 pour noir"""
         super().__init__(position, color)
-
-    def __str__(self):
+    def __str__(self) -> str:
+        """Renvoie la lettre utilisee pour representer la tour."""
         return "R"
-
-    def isValidMove(self, newPosition, board):
-        """
-        Verifie si le deplacement de la tour est valide.
-
-        newPosition : position d'arrivee
-        board : plateau de jeu
-        """
+    def isValidMove(self, newPosition, board) -> bool:
+        """Verifie si le deplacement de la tour est valide.
+        La tour peut se deplacer horizontalement ou verticalement.
+        Elle ne peut pas sauter par-dessus une autre piece.
+        Elle ne peut pas aller sur une piece de la meme couleur."""
         currentPosition = self.position
-#La tour ne peut pas rester sur la meme case
-        if currentPosition.column == newPosition.column and currentPosition.row == newPosition.row:
+        #La tour ne peut pas rester sur la meme case
+        if currentPosition == newPosition:
             return False
-#La tour se deplace seulement en ligne droute et soit sur la meme colonne soit sur la meme ligne
+        #Verification simple que la destination est dans l'echiquier
+        if newPosition.row < 1 or newPosition.row > 8:
+            return False
+        if newPosition.column < "a" or newPosition.column > "h":
+            return False
         same_column = currentPosition.column == newPosition.column
         same_row = currentPosition.row == newPosition.row
-
+        #La tour doit rester sur la meme ligne ou la meme colonne
         if not same_column and not same_row:
             return False
-#La tour ne peut pas aller sur une piece de la meme couleur
+        #La tour ne peut pas capturer une piece de la meme couleur
         piece_destination = board.getPiece(newPosition)
-
-        if piece_destination is not None:
-            if piece_destination.color == self.color:
-                return False
-#Verification du chemin si la tour monte ou descend
+        if piece_destination is not None and piece_destination.color == self.color:
+            return False
+        #cas 1: deplacement vertical
         if same_column:
             if newPosition.row > currentPosition.row:
                 step = 1
             else:
                 step = -1
-
             row = currentPosition.row + step
-
             while row != newPosition.row:
                 position_to_check = Position(currentPosition.column, row)
-
                 if board.getPiece(position_to_check) is not None:
                     return False
-
                 row = row + step
-#Vetification du chemin si la tour va a gouche ou a droite
+        #cas 2: deplacement horizontal
         if same_row:
-            current_col_number = ord(currentPosition.column)
-            new_col_number = ord(newPosition.column)
-
-            if new_col_number > current_col_number:
+            current_col = currentPosition.get_column_idx()
+            new_col = newPosition.get_column_idx()
+            if new_col > current_col:
                 step = 1
             else:
                 step = -1
-
-            col_number = current_col_number + step
-
-            while col_number != new_col_number:
-                column = chr(col_number)
+            col = current_col + step
+            while col != new_col:
+                column = chr(ord("a") + col)
                 position_to_check = Position(column, currentPosition.row)
-
                 if board.getPiece(position_to_check) is not None:
                     return False
-
-                col_number = col_number + step
-
+                col = col + step
         return True
