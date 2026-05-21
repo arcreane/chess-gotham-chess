@@ -1,0 +1,5 @@
+from position import Position
+
+class Board:
+    def __init__(self):
+        self.grid = [[None for _ in range(8)] for _ in range(8)]
