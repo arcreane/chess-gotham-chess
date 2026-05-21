@@ -20,3 +20,11 @@ def isValidMove(self, newPosition, board) -> bool:
 
 if __name__ == "__main__":
     from position import Position
+pos_depart = Position("d", 4)
+    mon_fou = Bishop(pos_depart, 0)
+
+    pos_valide = Position("f", 6)
+    print(f"Test d4-f6 : {mon_fou.isValidMove(pos_valide, None)}")
+
+    pos_invalide = Position("d", 6)
+    print(f"Test d4-d6 : {mon_fou.isValidMove(pos_invalide, None)}")
