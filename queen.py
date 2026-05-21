@@ -24,3 +24,18 @@ class Queen(Piece):
         if (diff_row == 0) or (diff_col == 0) or (diff_col == diff_row):
             return True
         return False
+
+#bloc test
+if __name__ == "__main__":
+    from position import Position
+
+    print("Début du test")
+
+    pos_depart = Position("d", 4)
+    ma_reine = Queen(pos_depart, 0)
+
+    pos_valide = Position("f", 6)
+    print(f"Test 1 mouvement valide d4 à d6 (Attendu True) : {ma_reine.isValidMove(pos_valide, None)}")
+
+    pos_invalide = Position("e", 6)
+    print(f"Test 2 mouvement invalide d4 à e6 (Attendu False) : {ma_reine.isValidMove(pos_invalide, None)}")
