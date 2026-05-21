@@ -12,3 +12,11 @@ def isValidMove(self, newPosition, board) -> bool:
 
         diff_col = abs(col_depart - col_arrivee)
         diff_row = abs(row_depart - row_arrivee)
+
+        if diff_row == diff_col and diff_row != 0:
+            return True
+            
+        return False
+
+if __name__ == "__main__":
+    from position import Position
