@@ -1,1 +1,14 @@
 from piece import Piece
+class Bishop(Piece):
+
+    def __str__(self) -> str:
+        return "B"
+def isValidMove(self, newPosition, board) -> bool:
+        col_depart = self.position.get_column_idx()
+        col_arrivee = newPosition.get_column_idx()
+        
+        row_depart = self.position.row
+        row_arrivee = newPosition.row
+
+        diff_col = abs(col_depart - col_arrivee)
+        diff_row = abs(row_depart - row_arrivee)
