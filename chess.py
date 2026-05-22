@@ -26,10 +26,10 @@ class Chess:
       print(self.board)
 
   def isValidMove(self, move):
-      return True
+      pass
 
   def isCheckMate(self):
-      return False
+      pass
 
   def updateBoard(self, move):
       pass
