@@ -5,6 +5,10 @@ class AIPlayer(Player):
   def __init__(self, color):
     """Initialise un joueur IA
     color :0 pour blanc, 1 pour noir"""
+    if color == 0:
+      ai_color = 1
+    else:
+      ai_color = 0
     super().__init__("AIPlayer", color)
   def askMove(self):
     """Genere un mouvement aleatoire"""
