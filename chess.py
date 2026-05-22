@@ -11,12 +11,16 @@ class Chess:
     name = input("Entrez votre nom : ")
     human_color = chooseColor()
     human_player = Player(name, human_color)
+    #创建玩家，包含名字颜色
     ai_player = AIPlayer(human_color)
+    #创建AI并反选颜色
     self.players = [human_player, ai_player]
+    #保存玩家
     if human_color == 0:
       self.currentPlayer = human_player
     else:
       self.currentPlayer = ai_player
+      #执白先走
 
   def displayBoard(self):
       print(self.board)
