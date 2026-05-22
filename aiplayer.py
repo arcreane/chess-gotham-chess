@@ -1,6 +1,7 @@
 import random
 from player import Player
 class AIPlayer(Player):
+  #继承player
   """Classe qui represente un joueur controle par l'ordinateur"""
   def __init__(self, human_color):
     """Initialise un joueur IA
@@ -10,6 +11,7 @@ class AIPlayer(Player):
     else:
       ai_color = 0
     super().__init__("AIPlayer", ai_color)
+    #选择与真人玩家颜色相反的颜色，固定名字
   def askMove(self):
     """Genere un mouvement aleatoire"""
     pieces = ["K", "Q", "B", "N", "R", "P"]
@@ -20,5 +22,6 @@ class AIPlayer(Player):
     start_row = random.choice(rows)
     end_column = random.choice(columns)
     end_row = random.choice(rows)
-    move = piece + start_column + str(start_row) + " " + end_column + str(end_move)
+    move = piece + start_column + str(start_row) + " " + end_column + str(end_row)
     return move
+    #随机移动
