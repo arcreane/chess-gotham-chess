@@ -10,3 +10,13 @@ def askMove(self):
   Ra1 a4"""
   move = input("Entrez votre mouvement: ")
   return move
+def chooseColor():
+  """Demande au joueur de choisir la couleur"""
+  color = input("Choisissez votre couleur(blanc/noir) : ")
+  while color != "blanc" and color != "noir":
+    print("Couleur invalide")
+    color = input("Choisissez votre couleur (blanc/noir) : ")
+  if color == "blanc":
+    return 0
+  else:
+    return 1
