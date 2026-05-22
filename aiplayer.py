@@ -2,14 +2,14 @@ import random
 from player import Player
 class AIPlayer(Player):
   """Classe qui represente un joueur controle par l'ordinateur"""
-  def __init__(self, color):
+  def __init__(self, human_color):
     """Initialise un joueur IA
     color :0 pour blanc, 1 pour noir"""
-    if color == 0:
+    if human_color == 0:
       ai_color = 1
     else:
       ai_color = 0
-    super().__init__("AIPlayer", color)
+    super().__init__("AIPlayer", ai_color)
   def askMove(self):
     """Genere un mouvement aleatoire"""
     pieces = ["K", "Q", "B", "N", "R", "P"]
