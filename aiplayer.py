@@ -2,11 +2,10 @@ import random
 from player import Player
 class AIPlayer(Player):
   """Classe qui represente un joueur controle par l'ordinateur"""
-  def __init__(self, name, color):
+  def __init__(self, color):
     """Initialise un joueur IA
-    name: nom du joueur IA
     color :0 pour blanc, 1 pour noir"""
-    super().__init__(name, color)
+    super().__init__("AIPlayer", color)
   def askMove(self):
     """Genere un mouvement aleatoire"""
     pieces = ["K", "Q", "B", "N", "R", "P"]
