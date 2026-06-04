@@ -76,6 +76,9 @@ class Chess:
 
      if parsed_move is None:
         return
+     piece_letter, start_position, end_position = parsed_move
+     piece = self.board.getPiece(start_position)
+    
      if piece is not None:
         piece.position = end_position
   
