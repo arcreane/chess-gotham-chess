@@ -26,7 +26,7 @@ class Board:
 def __str__(self):
         display = "  a b c d e f g h\n"
         for r in range(7, -1, -1):
-            line = f"{r} "
+            line = f"{r + 1} "
             for c in range(8):
                 piece = self.grid[r][c]
                 line += f"{piece if piece else '.'} "
