@@ -1,4 +1,5 @@
 from piece import Piece
+from position import Position
 
 class Pawn(Piece):
     
@@ -43,8 +44,6 @@ class Pawn(Piece):
 
 #Test
 if __name__ == "__main__":
-    from position import Position
-    
     print(" Test Bloc start")
     
     # Test 1 : Pion Blanc en position initiale (e2)
