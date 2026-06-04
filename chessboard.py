@@ -5,13 +5,13 @@ class Board:
         self.grid = [[None for _ in range(8)] for _ in range(8)]
     
     def place_piece(self, piece, position):
-        row = position.row
+        row = position.row -1
         col = position.get_column_idx()
         self.grid[row][col] = piece
         piece.position = position
 
     def get_piece_at(self, position):
-        row = position.row
+        row = position.row -1
         col = position.get_column_idx()
         return self.grid[row][col]
 
