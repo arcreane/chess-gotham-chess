@@ -1,4 +1,5 @@
 from piece import Piece
+from position import Position
 
 class Queen(Piece):
     """
@@ -27,8 +28,6 @@ class Queen(Piece):
 
 #bloc test
 if __name__ == "__main__":
-    from position import Position
-
     print("Début du test")
 
     pos_depart = Position("d", 4)
