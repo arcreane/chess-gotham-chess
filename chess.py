@@ -14,7 +14,7 @@ class Chess:
     human_color = chooseColor()
     human_player = Player(name, human_color)
     #创建玩家，包含名字颜色
-    ai_player = AIPlayer(human_color)
+    ai_player = AIPlayer(1-human_color)
     #创建AI并反选颜色
     self.players = [human_player, ai_player]
     #保存玩家
@@ -40,10 +40,10 @@ class Chess:
       
       piece_letter = start[0]
 
-       start_position = Position(start[1], int(start[2]))
-       end_position = Position(end[1], int(end[2]))
+      start_position = Position(start[1], int(start[2]))
+      end_position = Position(end[1], int(end[2]))
 
-       return piece_letter, start_position, end_position
+      return piece_letter, start_position, end_position
   
   def isValidMove(self, move):
       parsed_move = self.parseMove(move)
@@ -82,13 +82,13 @@ class Chess:
 
   def switchPlayer(self):
      if self.currentPlayer == self.players[0]:
-        self.currentPlayer = self.plyers[1]
+        self.currentPlayer = self.players[1]
      else:
-        self.currentPlayer == self.players[0]
+        self.currentPlayer = self.players[0]
        
         
 
-   def play(self):
+  def play(self):
       self.initPlayers()
 
       while not self.isCheckMate():
@@ -101,6 +101,6 @@ class Chess:
                   move = self.currentPlayer.askMove()
 
             self.updateBoard(move)
-            self,switchPlayer()
+            self.switchPlayer()
    
   
